@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: loss-demo
+   namespace: default
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         type: loss
+   template:
+      metadata:
+         labels:
+            type: loss
+      spec:
+         containers:
+            - name: loss-api
+              image: is-this-loss
+              imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: loss-entrypoint
+   namespace: default
+spec:
+   type: NodePort
+   selector:
+      type: loss
+   ports:
+      - port: 5000
+        targetPort: 5000
+        nodePort: 30001
