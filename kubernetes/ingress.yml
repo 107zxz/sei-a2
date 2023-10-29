@@ -1,21 +1,22 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: foo-app
+  name: loss-app
   labels:
-    app: foo
+    app: loss
 spec:
   containers:
-    - name: foo-app
-      image: 'kicbase/echo-server:1.0'
+    - name: loss-app
+      image: is-this-loss
+      imagePullPolicy: Never
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: foo-service
+  name: loss-service
 spec:
   selector:
-    app: foo
+    app: loss
   ports:
     - port: 8080
 ---
@@ -49,10 +50,10 @@ spec:
     - http:
         paths:
           - pathType: Prefix
-            path: /foo
+            path: /loss
             backend:
               service:
-                name: foo-service
+                name: loss-service
                 port:
                   number: 8080
           - pathType: Prefix

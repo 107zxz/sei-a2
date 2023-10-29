@@ -1,3 +1,4 @@
+# Loss server, has the API to query
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,6 +19,22 @@ spec:
               image: is-this-loss
               imagePullPolicy: Never
 ---
+# Loss entrypoint service: Exposes port on loss
+# apiVersion: v1
+# kind: Service
+# metadata:
+#    name: loss-entrypoint
+#    namespace: default
+# spec:
+#    type: NodePort
+#    selector:
+#       type: loss
+#    ports:
+#       - port: 80
+#         targetPort: 80
+#         nodePort: 30001
+# ---
+# Loss tester: sends a request to the loss server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -41,16 +58,27 @@ spec:
                 - name: PYTHONUNBUFFERED
                   value: "1"
 ---
-apiVersion: v1
-kind: Service
+# Gateway, routes access to loss
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
 metadata:
-   name: loss-entrypoint
-   namespace: default
+  name: prod-web
 spec:
-   type: NodePort
-   selector:
-      type: loss
-   ports:
-      - port: 5000
-        targetPort: 5000
-        nodePort: 30001
+  gatewayClassName: acme-lb
+  listeners:
+  - protocol: HTTP
+    port: 80
+    name: http
+---
+# Gateway route. IDK How this works
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: foo
+spec:
+  parentRefs:
+  - name: prod-web
+  rules:
+  - backendRefs:
+    - name: loss-entrypoint
+      port: 80
