@@ -1,0 +1,50 @@
+1. start up all microservices individually, no errors
+    1.a. start up router/gateway and connect to microservices, no errors
+
+2. request each microservice directly
+    2.a. request math microservices besides initial (input_validate), should it be possible?
+    2.b. request non-input microservices with inputs 
+
+2.1. do 2 but through the gateway, ensure results are same
+
+3. request math microservice chain
+    3.a. with integer
+    3.b. with negative integer
+    3.c. with 0
+    3.d. with string, should error
+    3.e. with nothing, should error
+    3.f. with decimal, should error
+
+4. request microservice that doesnt exist, check for graceful error
+    4.a. same but through gateway
+
+5. force close a microservice, check for auto restart/spin up
+
+6. close system, check for no errors
+
+General summary of how to get it working
+
+Minikube needs to be using the docker backend
+    minikube -p minikube docker-env | source
+
+    minikube start --driver docker
+
+Build the docker container
+    cd <DIR_WITH_DOCKERFILE>
+    docker build -t <IMAGE_NAME> .
+
+    docker build -t is-this-loss docker/loss-container/.
+    docker build -t loss-tester docker/loss-test-container/.
+
+    minikube image build -t is-this-loss docker/loss-container/.
+    minikube image build -t loss-tester docker/loss-test-container/.
+
+Import into minikube  (this takes forever)
+
+    minikube image load is-this-loss
+    minikube image load loss-tester
+
+Run the kubernetes deployment script
+    kubectl apply -f kubernetes/loss.yml 
+
+    minikube service loss-entrypoint
