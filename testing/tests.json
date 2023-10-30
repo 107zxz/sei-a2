@@ -1,6 +1,98 @@
 [
     {
-        "endpoint": "",
-        "parameters": {"param1": "value1", "param2": "value2"}
-    }
+        "endpoint": "greetings",
+        "parameters": {}
+    },
+    {
+        "endpoint": "greetings",
+        "parameters": {"input": "test"}
+    },
+    {
+        "endpoint": "dice_roll",
+        "parameters": {}
+    },
+    {
+        "endpoint": "dice_roll",
+        "parameters": {"input": "test"}
+    },
+    {
+        "endpoint": "timestamp",
+        "parameters": {}
+    },
+    {
+        "endpoint": "timestamp",
+        "parameters": {"input": "test"}
+    },
+    {
+        "endpoint": "input_validate",
+        "parameters": {}
+    },
+    {
+        "endpoint": "input_validate",
+        "parameters": {"input": "1"}
+    },
+    {
+        "endpoint": "input_validate",
+        "parameters": {"input": "-1"}
+    },
+    {
+        "endpoint": "input_validate",
+        "parameters": {"input": "0"}
+    },
+    {
+        "endpoint": "input_validate",
+        "parameters": {"input": "test"}
+    },
+    {
+        "endpoint": "input_validate",
+        "parameters": {"input": "3.1415"}
+    },
+    {
+        "endpoint": "increment",
+        "parameters": {}
+    },
+    {
+        "endpoint": "increment",
+        "parameters": {"input": "1"}
+    },
+    {
+        "endpoint": "increment",
+        "parameters": {"input": "-1"}
+    },
+    {
+        "endpoint": "increment",
+        "parameters": {"input": "0"}
+    },
+    {
+        "endpoint": "increment",
+        "parameters": {"input": "test"}
+    },
+    {
+        "endpoint": "increment",
+        "parameters": {"input": "3.1415"}
+    },
+    {
+        "endpoint": "format_output",
+        "parameters": {}
+    },
+    {
+        "endpoint": "format_output",
+        "parameters": {"input": "1"}
+    },
+    {
+        "endpoint": "format_output",
+        "parameters": {"input": "-1"}
+    },
+    {
+        "endpoint": "format_output",
+        "parameters": {"input": "0"}
+    },
+    {
+        "endpoint": "format_output",
+        "parameters": {"input": "test"}
+    },
+    {
+        "endpoint": "format_output",
+        "parameters": {"input": "3.1415"}
+    },
 ]
