@@ -7,7 +7,7 @@ import requests
 def test_microservice(endpoint, parameters=None):
 
     base_url = 'http://127.0.0.1:34225'
-    url = f'{base_url}/{endpoint}' 
+    url = f'{base_url}/{endpoint}'
 
     # Make a request with parameters
     # try except

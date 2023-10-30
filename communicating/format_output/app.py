@@ -6,8 +6,6 @@ app = Flask(__name__)
 @app.route("/")
 def format_output():
 
-    integer = request.args.get('input', '')
+    text = request.args.get('input', '')
 
-    output = "<p>Your result is: <b>{}</b>.</p>"
-    return output.format(integer)
-
+    return "<p>Your result is: <b>{}</b>.</p>".format(text)

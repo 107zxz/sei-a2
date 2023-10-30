@@ -9,8 +9,6 @@ def increment():
 
     integer = request.args.get('input', '')
 
-    try:
-        integer_inc = int(integer) + 1
-        return str(integer_inc)
-    except ValueError:
-        return "Error: Input is not a number!"
+    integer_inc = int(integer) + 1
+
+    return str(integer_inc)
