@@ -8,10 +8,9 @@ app = Flask(__name__)
 def increment():
 
     integer = request.args.get('input', '')
-    integer_inc = integer + 1
 
-    # output = GET req to format_output, through gateway
-    output = integer_inc
-
-    return output
-
+    try:
+        integer_inc = int(integer) + 1
+        return str(integer_inc)
+    except ValueError:
+        return "Error: Input is not a number!"
