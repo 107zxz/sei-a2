@@ -11,10 +11,10 @@ def greetings():
     <p>This system was set up with the help of <b>Kubernetes</b>, <b>Docker</b> and <b>Flask</b>, hope you enjoy your stay!</p>
     <p>Available microservices:</p>
     <ul>
-        <li>comm/increment?input=[integer] to increment an integer input.</li>
-        <li>noncomm/greetings: Print this welcome message.</li>
-        <li>noncomm/dice_roll: Roll a dice from 1 to 6.</li>
-        <li>noncomm/timestamp: Get the current date and time.</li>
+        <li><a href=/comm/increment> /comm/increment?input=[integer] </a> to increment an integer input by 1.</li>
+        <li><a href=/noncomm/greetings> /noncomm/greetings </a>: Print this welcome message.</li>
+        <li><a href=/noncomm/dice_roll> /noncomm/dice_roll </a>: Roll a dice from 1 to 6.</li>
+        <li><a href=/noncomm/timestamp> /noncomm/timestamp </a>: Get the current date and time.</li>
     </ul> 
     """
 

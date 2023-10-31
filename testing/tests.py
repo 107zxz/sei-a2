@@ -1,16 +1,33 @@
 import json
 import requests
 
-# rn this is just requesting existing microservices,
-# add creation and deletion of services? or manual
+# TODO: fill these in 
+greetings_base = "http://127.0.0.1:3000/"
+timestamp_base = "http://127.0.0.1:3000/"
+dice_roll_base = "http://127.0.0.1:3000/"
+input_validate_base = "http://127.0.0.1:3000/"
+calculate_base = "http://127.0.0.1:3000/"
+format_output_base = "http://127.0.0.1:3000/"
 
-def test_microservice(endpoint, parameters=None):
+def format_url(endpoint, base_url):
 
-    base_url = 'http://127.0.0.1:36107/'
-    url = f'{base_url}/{endpoint}'
+    # no endpoint, direct request
+    if endpoint == None:
+        url = base_url
+
+    # endpoint given, request through gateway
+    else:
+        url = f'{base_url}/{endpoint}'
+    
+    return url
+
+def test_microservice(endpoint, parameters=None, base_url='http://kube.info'):
+
+    url = format_url(endpoint, base_url)
 
     # Check the response
-    print(f"Testing request on {url} with parameters: {parameters}")
+    print(f"Requesting: {url}")
+    print(f'with parameters: {parameters}')
 
     # Try making a request to url endpoint
     try:
@@ -35,4 +52,5 @@ with open('tests.json') as json_file:
 
 # Run tests
 for test in tests:
-    test_microservice(test['endpoint'], test['parameters'])
+    test_microservice(test['endpoint'], test['parameters'])    
+
