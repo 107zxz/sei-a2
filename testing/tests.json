@@ -24,75 +24,75 @@
         "parameters": {"input": "test"}
     },
     {
-        "endpoint": "input_validate",
+        "endpoint": "comm/increment",
         "parameters": {}
     },
     {
-        "endpoint": "input_validate",
+        "endpoint": "comm/increment",
         "parameters": {"input": "1"}
     },
     {
-        "endpoint": "input_validate",
+        "endpoint": "comm/increment",
         "parameters": {"input": "-1"}
     },
     {
-        "endpoint": "input_validate",
+        "endpoint": "comm/increment",
         "parameters": {"input": "0"}
     },
     {
-        "endpoint": "input_validate",
+        "endpoint": "comm/increment",
         "parameters": {"input": "test"}
     },
     {
-        "endpoint": "input_validate",
+        "endpoint": "comm/increment",
         "parameters": {"input": "3.1415"}
     },
     {
-        "endpoint": "increment",
+        "endpoint": "comm/inc-calculate",
         "parameters": {}
     },
     {
-        "endpoint": "increment",
+        "endpoint": "comm/inc-calculate",
         "parameters": {"input": "1"}
     },
     {
-        "endpoint": "increment",
+        "endpoint": "comm/inc-calculate",
         "parameters": {"input": "-1"}
     },
     {
-        "endpoint": "increment",
+        "endpoint": "comm/inc-calculate",
         "parameters": {"input": "0"}
     },
     {
-        "endpoint": "increment",
+        "endpoint": "comm/inc-calculate",
         "parameters": {"input": "test"}
     },
     {
-        "endpoint": "increment",
+        "endpoint": "comm/inc-calculate",
         "parameters": {"input": "3.1415"}
     },
     {
-        "endpoint": "format_output",
+        "endpoint": "comm/inc-format-output",
         "parameters": {}
     },
     {
-        "endpoint": "format_output",
+        "endpoint": "comm/inc-format-output",
         "parameters": {"input": "1"}
     },
     {
-        "endpoint": "format_output",
+        "endpoint": "comm/inc-format-output",
         "parameters": {"input": "-1"}
     },
     {
-        "endpoint": "format_output",
+        "endpoint": "comm/inc-format-output",
         "parameters": {"input": "0"}
     },
     {
-        "endpoint": "format_output",
+        "endpoint": "comm/inc-format-output",
         "parameters": {"input": "test"}
     },
     {
-        "endpoint": "format_output",
+        "endpoint": "comm/inc-format-output",
         "parameters": {"input": "3.1415"}
     }
 ]

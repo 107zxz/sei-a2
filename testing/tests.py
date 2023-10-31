@@ -2,12 +2,12 @@ import json
 import requests
 
 # TODO: fill these in 
-greetings_base = ""
-timestamp_base = ""
-dice_roll_base = ""
-input_validate_base = ""
-calculate_base = ""
-format_output_base = ""
+greetings_base = "http://127.0.0.1:3000/"
+timestamp_base = "http://127.0.0.1:3000/"
+dice_roll_base = "http://127.0.0.1:3000/"
+input_validate_base = "http://127.0.0.1:3000/"
+calculate_base = "http://127.0.0.1:3000/"
+format_output_base = "http://127.0.0.1:3000/"
 
 def format_url(endpoint, base_url):
 
@@ -27,6 +27,7 @@ def test_microservice(endpoint, parameters=None, base_url='http://kube.info'):
 
     # Check the response
     print(f"Requesting: {url}")
+    print(f'with parameters: {parameters}')
 
     # Try making a request to url endpoint
     try:
@@ -51,6 +52,5 @@ with open('tests.json') as json_file:
 
 # Run tests
 for test in tests:
-        
     test_microservice(test['endpoint'], test['parameters'])    
 
