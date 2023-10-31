@@ -4,10 +4,6 @@ from flask import request
 app = Flask(__name__)
 
 @app.route("/")
-def status_msg():
-    return "<p>Use /greetings to get a welcome message.</p>"
-
-@app.route("/greetings")
 def greetings():
 
     output = """
@@ -15,9 +11,10 @@ def greetings():
     <p>This system was set up with the help of <b>Kubernetes</b>, <b>Docker</b> and <b>Flask</b>, hope you enjoy your stay!</p>
     <p>Available microservices:</p>
     <ul>
-        <li>a</li>
-        <li>b</li>
-        <li>c</li>
+        <li>comm/increment?input=[integer] to increment an integer input.</li>
+        <li>noncomm/greetings: Print this welcome message.</li>
+        <li>noncomm/dice_roll: Roll a dice from 1 to 6.</li>
+        <li>noncomm/timestamp: Get the current date and time.</li>
     </ul> 
     """
 

@@ -94,5 +94,5 @@
     {
         "endpoint": "format_output",
         "parameters": {"input": "3.1415"}
-    },
+    }
 ]

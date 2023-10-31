@@ -4,10 +4,6 @@ from flask import request
 app = Flask(__name__)
 
 @app.route("/")
-def status_msg():
-    return "<p>Use /increment?input=[integer] to increment an integer input</p>"
-
-@app.route("/increment")
 def input_validate():
 
     integer = request.args.get('input', '')
