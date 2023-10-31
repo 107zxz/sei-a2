@@ -1,26 +1,26 @@
 [
     {
-        "endpoint": "greetings",
+        "endpoint": "noncomm/greetings",
         "parameters": {}
     },
     {
-        "endpoint": "greetings",
+        "endpoint": "noncomm/greetings",
         "parameters": {"input": "test"}
     },
     {
-        "endpoint": "dice_roll",
+        "endpoint": "noncomm/dice_roll",
         "parameters": {}
     },
     {
-        "endpoint": "dice_roll",
+        "endpoint": "noncomm/dice_roll",
         "parameters": {"input": "test"}
     },
     {
-        "endpoint": "timestamp",
+        "endpoint": "noncomm/timestamp",
         "parameters": {}
     },
     {
-        "endpoint": "timestamp",
+        "endpoint": "noncomm/timestamp",
         "parameters": {"input": "test"}
     },
     {

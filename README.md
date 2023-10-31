@@ -1,6 +1,6 @@
 # SEI Assignment 2
 
-## Nico Vidal - aXXXXXXX
+## Nico Vidal - a1825652
 ## Tom Robinson - a1831478
 
 
