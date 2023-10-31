@@ -1,1 +1,0 @@
-<p>You rolled a <b>6</b>.</p>

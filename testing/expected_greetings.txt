@@ -1,3 +1,4 @@
+
     <p>Welcome to the <b>Kubernetes</b> microservice gateway architecture!</p>
     <p>This system was set up with the help of <b>Kubernetes</b>, <b>Docker</b> and <b>Flask</b>, hope you enjoy your stay!</p>
     <p>Available microservices:</p>

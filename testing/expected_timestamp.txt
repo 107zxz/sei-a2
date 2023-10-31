@@ -1,1 +1,0 @@
-<p>The current date and time is: <b>2023-10-31 17:09:55</b>.</p>
