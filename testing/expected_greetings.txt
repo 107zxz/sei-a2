@@ -1,0 +1,10 @@
+    <p>Welcome to the <b>Kubernetes</b> microservice gateway architecture!</p>
+    <p>This system was set up with the help of <b>Kubernetes</b>, <b>Docker</b> and <b>Flask</b>, hope you enjoy your stay!</p>
+    <p>Available microservices:</p>
+    <ul>
+        <li><a href=/comm/increment> /comm/increment?input=[integer] </a> to increment an integer input by 1.</li>
+        <li><a href=/noncomm/greetings> /noncomm/greetings </a>: Print this welcome message.</li>
+        <li><a href=/noncomm/dice_roll> /noncomm/dice_roll </a>: Roll a dice from 1 to 6.</li>
+        <li><a href=/noncomm/timestamp> /noncomm/timestamp </a>: Get the current date and time.</li>
+    </ul> 
+    
