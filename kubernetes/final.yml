@@ -1,0 +1,132 @@
+# DICE
+kind: Pod
+apiVersion: v1
+metadata:
+  name: dice-app
+  labels:
+    app: dice
+spec:
+  containers:
+    - name: dice-app
+      image: dice-container
+      imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dice-service
+spec:
+  type: NodePort
+  selector:
+    app: dice
+  ports:
+    - port: 5000
+---
+# GREET
+kind: Pod
+apiVersion: v1
+metadata:
+  name: greet-app
+  labels:
+    app: greet
+spec:
+  containers:
+    - name: greet-app
+      image: greet-container
+      imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: greet-service
+spec:
+  type: NodePort
+  selector:
+    app: greet
+  ports:
+    - port: 5000
+---
+# TIMESTAMP
+kind: Pod
+apiVersion: v1
+metadata:
+  name: timestamp-app
+  labels:
+    app: timestamp
+spec:
+  containers:
+    - name: timestamp-app
+      image: timestamp-container
+      imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: timestamp-service
+spec:
+  type: NodePort
+  selector:
+    app: timestamp
+  ports:
+    - port: 5000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nging.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: kube.info
+    http:
+        paths:
+          # Use regex to allow specifying params / subpaths
+          # - pathType: ImplementationSpecific
+          #   path: /noncomm/dice(/|$)(.*)
+          #   backend:
+          #     service:
+          #       name: dice-service
+          #       port:
+          #         number: 5000
+          - pathType: Prefix
+            path: /noncomm/dice
+            backend:
+              service:
+                name: dice-service
+                port:
+                  number: 5000
+          - pathType: ImplementationSpecific
+            path: /noncomm/greetings(/|$)(.*)
+            backend:
+              service:
+                name: greet-service
+                port:
+                  number: 5000
+
+          - pathType: Prefix
+            path: /noncomm/timestamp
+            backend:
+              service:
+                name: timestamp-service
+                port:
+                  number: 5000
+
+
+          # Communicating
+          - pathType: Prefix
+            path: /comm/
+            backend:
+              service:
+                name: dice-service
+                port:
+                  number: 5000
+          - pathType: Prefix
+            path: /comm/
+            backend:
+              service:
+                name: dice-service
+                port:
+                  number: 5000
+---
