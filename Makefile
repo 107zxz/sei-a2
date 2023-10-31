@@ -22,13 +22,13 @@ calculate:
 format_output:
 	cd communicating/format_output && ${MAKE}
 
-
-
-
 # Initial kubernetes setup
 kube_setup:
-	minikube start --driver hyperkit
+	minikube start
 	minikube addons enable ingress
+
+kill_companion_kube:
+	minikube delete
 
 
 # Apply kubernetes changes
