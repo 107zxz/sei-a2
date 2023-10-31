@@ -32,7 +32,7 @@ def test_microservice(endpoint, parameters=None):
 # Load test data from the JSON file
 with open('tests.json') as json_file:
     tests = json.load(json_file)
-  
+
 # Run tests
 for test in tests:
     test_microservice(test['endpoint'], test['parameters'])
