@@ -90,6 +90,8 @@ spec:
           #       name: dice-service
           #       port:
           #         number: 5000
+
+          # Non-communicating
           - pathType: Prefix
             path: /noncomm/dice
             backend:
@@ -97,8 +99,8 @@ spec:
                 name: dice-service
                 port:
                   number: 5000
-          - pathType: ImplementationSpecific
-            path: /noncomm/greetings(/|$)(.*)
+          - pathType: Prefix
+            path: /noncomm/greetings
             backend:
               service:
                 name: greet-service
@@ -115,18 +117,4 @@ spec:
 
 
           # Communicating
-          - pathType: Prefix
-            path: /comm/
-            backend:
-              service:
-                name: dice-service
-                port:
-                  number: 5000
-          - pathType: Prefix
-            path: /comm/
-            backend:
-              service:
-                name: dice-service
-                port:
-                  number: 5000
 ---
