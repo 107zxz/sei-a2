@@ -151,7 +151,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: kube.info
+  - host: kube.local
     http:
         paths:
           # Use regex to allow specifying params / subpaths
@@ -197,7 +197,7 @@ spec:
 
           # Communicating
           - pathType: ImplementationSpecific
-            path: /comm/increment
+            path: /comm/increment(/|$)(.*)
             backend:
               service:
                 name: input-validate-service
@@ -205,7 +205,7 @@ spec:
                   number: 5000
 
           - pathType: ImplementationSpecific
-            path: /comm/inc-calculate
+            path: /comm/inc-calculate(/|$)(.*)
             backend:
               service:
                 name: calculate-service
@@ -213,7 +213,7 @@ spec:
                   number: 5000
 
           - pathType: ImplementationSpecific
-            path: /comm/inc-format-output
+            path: /comm/inc-format-output(/|$)(.*)
             backend:
               service:
                 name: format-output-service
