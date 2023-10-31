@@ -48,7 +48,7 @@ def test_microservice(endpoint, parameters=None, base_url='http://kube.info'):
 # Load test data from the JSON file
 with open('tests.json') as json_file:
     tests = json.load(json_file)
-  
+
 # Run tests
 for test in tests:
         

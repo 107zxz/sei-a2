@@ -70,6 +70,78 @@ spec:
   ports:
     - port: 5000
 ---
+# INPUT VALIDATE
+kind: Pod
+apiVersion: v1
+metadata:
+  name: input-validate-app
+  labels:
+    app: input-validate
+spec:
+  containers:
+    - name: input-validate-app
+      image: input-validate-container
+      imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: input-validate-service
+spec:
+  type: NodePort
+  selector:
+    app: input-validate
+  ports:
+    - port: 5000
+---
+# CALCULATE
+kind: Pod
+apiVersion: v1
+metadata:
+  name: calculate-app
+  labels:
+    app: calculate
+spec:
+  containers:
+    - name: calculate-app
+      image: calculate-container
+      imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: calculate-service
+spec:
+  type: NodePort
+  selector:
+    app: calculate
+  ports:
+    - port: 5000
+---
+# FORMAT OUTPUT
+kind: Pod
+apiVersion: v1
+metadata:
+  name: format-output-app
+  labels:
+    app: format-output
+spec:
+  containers:
+    - name: format-output-app
+      image: format-output-container
+      imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: format-output-service
+spec:
+  type: NodePort
+  selector:
+    app: format-output
+  ports:
+    - port: 5000
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -90,15 +162,24 @@ spec:
           #       name: dice-service
           #       port:
           #         number: 5000
+
+          # Non-communicating
           - pathType: Prefix
-            path: /noncomm/dice
+            path: /
+            backend:
+              service:
+                name: greet-service
+                port:
+                  number: 5000
+          - pathType: Prefix
+            path: /noncomm/dice_roll
             backend:
               service:
                 name: dice-service
                 port:
                   number: 5000
-          - pathType: ImplementationSpecific
-            path: /noncomm/greetings(/|$)(.*)
+          - pathType: Prefix
+            path: /noncomm/greetings
             backend:
               service:
                 name: greet-service
@@ -115,18 +196,27 @@ spec:
 
 
           # Communicating
-          - pathType: Prefix
-            path: /comm/
+          - pathType: ImplementationSpecific
+            path: /comm/increment
             backend:
               service:
-                name: dice-service
+                name: input-validate-service
                 port:
                   number: 5000
-          - pathType: Prefix
-            path: /comm/
+
+          - pathType: ImplementationSpecific
+            path: /comm/inc-calculate
             backend:
               service:
-                name: dice-service
+                name: calculate-service
+                port:
+                  number: 5000
+
+          - pathType: ImplementationSpecific
+            path: /comm/inc-format-output
+            backend:
+              service:
+                name: format-output-service
                 port:
                   number: 5000
 ---
