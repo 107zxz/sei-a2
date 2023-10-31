@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request
+from flask import Response
 import random
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ random.seed()
 def dice_roll():
 
     random_int = random.randint(1, 6)
-    output = "<p>You rolled a <b>{}</b>.</p>"
+    output = f"<p>You rolled a <b>{random_int}</b>.</p>"
+    output_status = 200
 
-    return output.format(random_int)
+    return Response(response=output, status=output_status)

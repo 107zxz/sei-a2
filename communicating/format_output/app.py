@@ -1,11 +1,15 @@
 from flask import Flask
 from flask import request
+from flask import Response
 
 app = Flask(__name__)
 
 @app.route("/")
 def format_output():
 
-    text = request.args.get('input', '')
+    input = request.args.get('input', '')
 
-    return "<p>Your result is: <b>{}</b>.</p>".format(text)
+    output =  f"<p>Your result is: <b>{input}</b>.</p>"
+    output_status = 200
+
+    return Response(response=output, status=output_status)

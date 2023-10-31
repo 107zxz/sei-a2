@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import Response
 
 app = Flask(__name__)
 
@@ -18,5 +19,7 @@ def greetings():
     </ul> 
     """
 
-    return output
+    output_status = 200
+
+    return Response(response=output, status=output_status)
 

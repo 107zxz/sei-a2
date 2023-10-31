@@ -1,13 +1,17 @@
+import sys
 import json
 import requests
+import argparse
 
-# TODO: fill these in 
+# flask run -p 3000
 greetings_base = "http://127.0.0.1:3000/"
 timestamp_base = "http://127.0.0.1:3000/"
 dice_roll_base = "http://127.0.0.1:3000/"
 input_validate_base = "http://127.0.0.1:3000/"
 calculate_base = "http://127.0.0.1:3000/"
 format_output_base = "http://127.0.0.1:3000/"
+
+# TODO: add output comparisons
 
 def format_url(endpoint, base_url):
 
@@ -26,31 +30,46 @@ def test_microservice(endpoint, parameters=None, base_url='http://kube.info'):
     url = format_url(endpoint, base_url)
 
     # Check the response
-    print(f"Requesting: {url}")
-    print(f'with parameters: {parameters}')
+    print(f"\nRequesting: {url} with parameters: {parameters}")
 
     # Try making a request to url endpoint
     try:
         response = requests.get(url, params=parameters)
+        print("Status code:", response.status_code)
+        print("Response body:", response.content)
 
-        if response.status_code == 200:
-            print("Request was successful")
+    except Exception as e:
+        print(e)
 
-            # https://www.w3schools.com/python/ref_requests_response.asp
-
-            print("Response body:", response.content)
-        else:
-            print("Request failed, status code:", response.status_code)
-
-    except requests.exceptions.RequestException as e:
-        raise SystemExit(e)
-
+parser = argparse.ArgumentParser(description='Run test cases against existing microservices.')
+parser.add_argument('--bypass', action='store_true', help='Bypass gateway and directly query microservices')
+args = parser.parse_args()
 
 # Load test data from the JSON file
 with open('tests.json') as json_file:
     tests = json.load(json_file)
 
 # Run tests
+base = ""
 for test in tests:
-    test_microservice(test['endpoint'], test['parameters'])    
+
+    if args.bypass:
+
+        if test['endpoint'] == "noncomm/greetings":
+            base = greetings_base
+        elif test['endpoint'] == "noncomm/timestamp":
+            base = timestamp_base
+        elif test['endpoint'] == "noncomm/dice_roll":
+            base = dice_roll_base
+        elif test['endpoint'] == "comm/increment": # input_validate
+            base = input_validate_base
+        elif test['endpoint'] == "comm/inc-calculate":
+            base = calculate_base
+        elif test['endpoint'] == "comm/inc-format-output":
+            base = format_output_base
+
+        test_microservice(None, test['parameters'], base)    
+
+    else:
+        test_microservice(test['endpoint'], test['parameters'])    
 

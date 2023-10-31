@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import Response
 
 app = Flask(__name__)
 
@@ -15,10 +16,13 @@ def input_validate():
         # debug as printing the number until figuring out proper GET req
 
         int(integer)
+        
         output = integer
+        output_status = 200
 
     except ValueError:
         
         output = "<p>Invalid input</p>"
+        output_status = 400
 
-    return output
+    return Response(response=output, status=output_status)
